@@ -14,10 +14,15 @@ lá sen, không phải thứ bé phải nghe để tìm (dễ gây nhầm vì kh
   (bằng số lượt của màn) sáng thêm 1 chú.
 - **Hàng ếch ở đầu màn:** sáng dần lên theo số lượt đã giải đúng (như trước), nhưng mỗi lần chọn sai
   trừ đi 1 chú — tính dồn trong suốt màn, có thể kéo hàng ếch xuống thấp hơn cả số lượt đã qua, không
-  bao giờ xuống dưới 0. Đây chỉ là hiển thị, không làm dừng màn hay ảnh hưởng số sao.
+  bao giờ xuống dưới 0.
+- **Qua màn hay chưa:** cuối màn, số ếch còn lại trong hàng phải đạt **ít nhất `minFrogs`** (xem bên dưới)
+  thì mới "qua" — được lưu điểm và mở khóa màn sau. Không đạt thì màn chơi vẫn kết thúc bình thường
+  (không bị dừng giữa chừng), nhưng không được tính qua: không lưu sao mới, màn sau (nếu trước đó
+  chưa từng mở khóa) vẫn khóa, hộp thoại rủ chơi lại thay vì nút "Màn tiếp". Nếu màn sau đã từng mở khóa
+  từ một lần chơi đạt trước đó, chơi lại không đạt lần này cũng không khóa lại — chỉ không mở thêm.
 - **Hết màn:** nhận 1–3 sao. 3 sao khi không sai lần nào; 2 sao khi số lần sai không quá nửa số lượt; còn lại 1 sao.
-  Cách tính sao không đổi, không liên quan đến hàng ếch ở trên.
-- Màn sau mở khóa khi màn trước có ít nhất 1 sao. Sao được lưu trên máy, chơi lại không bị giảm sao.
+  Cách tính sao không đổi, độc lập với việc có qua màn hay không.
+- Sao được lưu trên máy, chơi lại không bị giảm sao (chỉ giữ kết quả tốt nhất).
 
 ## Độ khó
 | Màn | Số lá sen | Hiện chữ? | Kỹ năng |
@@ -42,7 +47,7 @@ lá sen, không phải thứ bé phải nghe để tìm (dễ gây nhầm vì kh
   ],
   "levels": [
     {"pads": 4, "rounds": 4, "showWord": true},
-    {"pads": 6, "rounds": 5, "showWord": false, "words": ["apple", "banana", "..."]}
+    {"pads": 6, "rounds": 5, "showWord": false, "minFrogs": 4, "words": ["apple", "banana", "..."]}
   ]
 }
 ```
@@ -54,6 +59,9 @@ lá sen, không phải thứ bé phải nghe để tìm (dễ gây nhầm vì kh
   phải thứ bé nghe để tìm, và trên lá sen không có hình con ếch nào — nhắc đến sẽ gây nhầm cho bé.
 - `picture`: emoji hoặc chữ ngắn (ví dụ `"3"`).
 - `pads`: số lá sen (không vượt quá số từ của màn). `rounds`: số chú ếch cần tìm.
+- `minFrogs` (tùy chọn, trong level): số ếch tối thiểu cần còn lại cuối màn để "qua" (xem mục Ý tưởng).
+  Bỏ trống thì dùng mặc định: khoảng nửa số `rounds` (làm tròn lên, tối thiểu 1) — ví dụ màn 4 lượt thì
+  mặc định cần 2. Phải là số nguyên từ 1 đến `rounds`. Muốn một màn dễ/khó hơn hẳn thì chỉnh số này.
 - `words` (tùy chọn, trong level): chỉ dùng một phần từ vựng của chủ đề.
 - Thêm chủ đề mới: tạo file và thêm tên file vào `index.json`.
 

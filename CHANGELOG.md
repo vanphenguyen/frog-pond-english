@@ -12,3 +12,4 @@
 - Thêm từ vựng cho cả 4 chủ đề để chơi lâu đỡ nhàm: Animals 12→20 (elephant, tiger, zebra, sheep, chicken, owl, penguin, turtle), Fruits 12→17 (kiwi, coconut, melon, avocado, blueberry), Colors 9→11 (pink, cyan), Numbers 1–10→1–15.
 - Thêm màn 5 (khó nhất) cho mỗi chủ đề: 12 lá sen, chỉ nghe (riêng Colors 11 lá sen vì chủ đề chỉ có 11 từ).
 - Hàng ếch ở đầu màn chơi vẫn sáng dần theo số lượt đã giải đúng như cũ, nhưng giờ mỗi lần chọn sai sẽ trừ đi 1 chú ếch, tính dồn trong suốt màn (không xuống dưới 0). Không ảnh hưởng đến cách tính sao cuối màn.
+- Mỗi màn giờ có một số ếch tối thiểu cần đạt cuối màn mới được "qua" (mở khóa màn sau, lưu điểm) — mặc định khoảng nửa số lượt, chỉnh được riêng từng màn bằng `minFrogs` trong JSON. Không đạt thì màn vẫn chơi hết bình thường, chỉ là không qua, hộp thoại rủ chơi lại.

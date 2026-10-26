@@ -98,12 +98,20 @@ class _GameScreenState extends State<GameScreen> {
 
   Future<void> _finishLevel() async {
     final stars = _session.stars;
-    await AppScope.of(context)
-        .progress
-        .saveStars(widget.topic.id, _levelIndex, stars);
-    _speech.speak('Well done! You found all the frogs!');
+    final passed = _session.passed;
+    final progress = AppScope.of(context).progress;
+    // Only a pass counts toward unlocking the next level — a replay that
+    // falls short never lowers an already-earned score (saveStars keeps
+    // the best), but it must not grant progress either.
+    if (passed) {
+      await progress.saveStars(widget.topic.id, _levelIndex, stars);
+    }
+    _speech.speak(passed
+        ? 'Well done! You found all the frogs!'
+        : 'So close! Let\'s try again!');
     if (!mounted) return;
-    final hasNext = _levelIndex + 1 < widget.topic.levels.length;
+    final hasNext = _levelIndex + 1 < widget.topic.levels.length &&
+        progress.isUnlocked(widget.topic.id, _levelIndex + 1);
     final choice = await showDialog<_ResultChoice>(
       context: context,
       barrierDismissible: false,
@@ -111,6 +119,9 @@ class _GameScreenState extends State<GameScreen> {
         stars: stars,
         mistakes: _session.mistakes,
         hasNext: hasNext,
+        passed: passed,
+        frogsCollected: _session.livesRemaining,
+        requiredFrogs: _level.requiredFrogs,
       ),
     );
     if (!mounted) return;
@@ -309,18 +320,30 @@ class _ResultDialog extends StatelessWidget {
     required this.stars,
     required this.mistakes,
     required this.hasNext,
+    required this.passed,
+    required this.frogsCollected,
+    required this.requiredFrogs,
   });
 
   final int stars;
   final int mistakes;
   final bool hasNext;
 
+  /// Whether enough frogs were left in the counter to clear the level —
+  /// see GameSession.passed.
+  final bool passed;
+  final int frogsCollected;
+  final int requiredFrogs;
+
   @override
   Widget build(BuildContext context) {
     void choose(_ResultChoice c) => Navigator.of(context).pop(c);
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
-      title: const Text('Great job! 🎉', textAlign: TextAlign.center),
+      title: Text(
+        passed ? 'Great job! 🎉' : 'Gần được rồi! 🐸',
+        textAlign: TextAlign.center,
+      ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -329,6 +352,12 @@ class _ResultDialog extends StatelessWidget {
             style: const TextStyle(fontSize: 44),
           ),
           Text(mistakes == 0 ? 'Không sai lần nào!' : 'Số lần chọn sai: $mistakes'),
+          const SizedBox(height: 4),
+          Text('🐸 $frogsCollected/$requiredFrogs — cần đủ số này để qua màn'),
+          if (!passed) ...[
+            const SizedBox(height: 4),
+            const Text('Chơi lại để có đủ ếch nhé!', textAlign: TextAlign.center),
+          ],
         ],
       ),
       actionsAlignment: MainAxisAlignment.center,
