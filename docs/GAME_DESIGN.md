@@ -51,7 +51,7 @@ lá sen, không phải thứ bé phải nghe để tìm (dễ gây nhầm vì kh
 - Thêm chủ đề mới: tạo file và thêm tên file vào `index.json`.
 
 ## Chủ đề hiện có
-Animals (12 từ), Fruits (12), Colors (9), Numbers (1–10).
+Animals (20 từ), Fruits (17), Colors (11), Numbers (1–15).
 
 ## Ý tưởng cho các phiên bản sau
 - Ghi âm giọng người thật thay cho giọng máy.
