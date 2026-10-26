@@ -32,6 +32,7 @@
     {"pads": 4, "rounds": 4, "showWord": true},
     {"pads": 6, "rounds": 5, "showWord": true},
     {"pads": 6, "rounds": 5, "showWord": false},
-    {"pads": 9, "rounds": 6, "showWord": false}
+    {"pads": 9, "rounds": 6, "showWord": false},
+    {"pads": 12, "rounds": 7, "showWord": false}
   ]
 }

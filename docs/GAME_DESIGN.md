@@ -20,6 +20,7 @@ lá sen, không phải thứ bé phải nghe để tìm (dễ gây nhầm vì kh
 | 2 | 6 | Có | Như trên, nhiều lựa chọn hơn |
 | 3 | 6 | Không ("👂 Listen!") | Chỉ nghe |
 | 4 | 9 | Không | Chỉ nghe, nhiều lựa chọn |
+| 5 | 12 (Colors: 11, chỉ có 11 từ) | Không | Chỉ nghe, nhiều lựa chọn nhất |
 
 ## Định dạng file chủ đề (`assets/topics/<id>.json`)
 ```json

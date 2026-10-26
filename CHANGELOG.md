@@ -10,3 +10,4 @@
 - Câu đầy đủ "Where is the frog? ..." không còn tự động đọc ở lượt đầu mỗi màn: chơi nhiều màn liên tiếp sẽ không nghe lại câu đó mỗi lần vào màn mới.
 - Bỏ "frog" khỏi lời đọc và chữ hiển thị mỗi lượt (ví dụ "Listen! Can you find the apple?" thay vì "Where is the frog? It is under the apple!"): con ếch chỉ là phần thưởng khi chạm đúng, không phải thứ bé cần nghe để tìm, và nhắc đến dễ gây nhầm vì không có hình con ếch trên lá sen nào.
 - Thêm từ vựng cho cả 4 chủ đề để chơi lâu đỡ nhàm: Animals 12→20 (elephant, tiger, zebra, sheep, chicken, owl, penguin, turtle), Fruits 12→17 (kiwi, coconut, melon, avocado, blueberry), Colors 9→11 (pink, cyan), Numbers 1–10→1–15.
+- Thêm màn 5 (khó nhất) cho mỗi chủ đề: 12 lá sen, chỉ nghe (riêng Colors 11 lá sen vì chủ đề chỉ có 11 từ).
