@@ -81,16 +81,18 @@ class GameSession {
     roundSolved = false;
   }
 
-  /// The full sentence opens the level; later rounds rotate the short ones
-  /// without using the same sentence twice in a row.
+  /// Picks a random sentence out of the full clue and the short ones,
+  /// without using the same one twice in a row. The first round of a level
+  /// is not special-cased to the long sentence anymore: with many levels in
+  /// a row that made "Where is the frog?" the first thing heard every
+  /// single time, which children found repetitive.
   String _nextClue() {
-    final short = topic.shortClues;
-    if (roundNumber == 1 || short.isEmpty) return _clueTemplate = topic.clue;
+    final pool = [topic.clue, ...topic.shortClues];
     final choices = [
-      for (final c in short)
+      for (final c in pool)
         if (c != _clueTemplate) c,
     ];
-    final pool = choices.isEmpty ? short : choices;
-    return _clueTemplate = pool[_random.nextInt(pool.length)];
+    final options = choices.isEmpty ? pool : choices;
+    return _clueTemplate = options[_random.nextInt(options.length)];
   }
 }

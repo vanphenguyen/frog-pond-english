@@ -7,3 +7,4 @@
 - Bản chơi trên web (GitHub Pages) để chơi bằng Safari trên iPhone.
 - Bản web: luôn chọn giọng tiếng Anh (trước đây Safari có thể đọc bằng giọng tiếng Việt của máy).
 - Câu gợi ý không còn lặp lại: lượt đầu đọc đủ câu, các lượt sau luân phiên câu ngắn (`shortClues` trong JSON).
+- Câu đầy đủ "Where is the frog? ..." không còn tự động đọc ở lượt đầu mỗi màn: chơi nhiều màn liên tiếp sẽ không nghe lại câu đó mỗi lần vào màn mới.
