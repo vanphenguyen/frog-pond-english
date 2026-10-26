@@ -13,6 +13,11 @@ Mỗi lần có thay đổi, GitHub Actions tự build file APK:
 **Actions** → lần chạy mới nhất → mục **Artifacts** → tải `frog-pond-apk`, giải nén và cài lên điện thoại
 (cần cho phép "cài ứng dụng từ nguồn không xác định").
 
+## Chơi trên iPhone (hoặc bất kỳ trình duyệt nào)
+Mở **https://vanphenguyen.github.io/frog-pond-english/** bằng Safari.
+Muốn có biểu tượng như app: bấm nút **Chia sẻ** → **Thêm vào MH chính**.
+Bản web tự cập nhật mỗi khi nhánh `main` thay đổi (`.github/workflows/pages.yml`).
+
 ## Chạy trên máy (khi đã cài Flutter)
 ```bash
 flutter pub get

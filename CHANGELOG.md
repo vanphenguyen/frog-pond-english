@@ -4,3 +4,4 @@
 - Bản chơi được đầu tiên: 4 chủ đề (Animals, Fruits, Colors, Numbers), mỗi chủ đề 4 màn.
 - Giọng đọc tiếng Anh, hiện nghĩa tiếng Việt khi tìm thấy ếch.
 - Tính sao, mở khóa màn, lưu tiến độ trên máy.
+- Bản chơi trên web (GitHub Pages) để chơi bằng Safari trên iPhone.
