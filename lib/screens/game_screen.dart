@@ -283,7 +283,7 @@ class _ClueBanner extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              solved ? 'You found it! 🎉' : 'Where is the frog? 🔊',
+              solved ? 'You found it! 🎉' : 'Listen! 🔊',
               style: const TextStyle(fontSize: 16, color: Colors.black54),
             ),
             Text(

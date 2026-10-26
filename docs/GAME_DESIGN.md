@@ -1,12 +1,12 @@
 # Thiết kế game: Frog Pond English
 
 ## Ý tưởng
-Đầm sen có nhiều lá sen, mỗi lá có một hình (con vật, trái cây, màu, số).
-Mỗi lượt, giọng đọc chọn ngẫu nhiên một trong các câu của chủ đề — câu đầy đủ
-*"Where is the frog? It is under the **apple**!"* hoặc một câu ngắn (*"Find the **apple**!"*,
-*"Can you find the **apple**?"*…) — không trùng câu ở lượt ngay trước. Câu đầy đủ không bị
-ép đọc ở lượt đầu mỗi màn, nên chơi nhiều màn liên tiếp không bị nghe "Where is the frog?"
-lặp lại mỗi lần vào màn mới. Bé chạm vào lá sen đúng để tìm chú ếch.
+Đầm sen có nhiều lá sen, mỗi lá có một hình (con vật, trái cây, màu, số), và một chú ếch
+nấp dưới đúng một lá. Mỗi lượt, giọng đọc chọn ngẫu nhiên một trong các câu của chủ đề
+(*"Listen! Can you find the **apple**?"*, *"Find the **apple**!"*, *"Where is the **apple**?"*…),
+không trùng câu ở lượt ngay trước. Câu đọc **chỉ gọi tên thứ bé cần tìm** (con vật, trái cây,
+màu, số), không nhắc đến "ếch" — con ếch chỉ là phần thưởng bất ngờ, nhảy ra khi bé chạm đúng
+lá sen, không phải thứ bé phải nghe để tìm (dễ gây nhầm vì không có hình con ếch nào trên các lá sen).
 
 - **Chọn sai:** lá rung, mờ đi, hiện chữ và đọc từ đó ("banana. Try again!"). Bé vẫn học được một từ mới.
 - **Chọn đúng:** ếch nhảy lên, khung gợi ý hiện nghĩa tiếng Việt ("apple = quả táo").
@@ -28,8 +28,8 @@ lặp lại mỗi lần vào màn mới. Bé chạm vào lá sen đúng để t�
   "title": "Fruits",
   "titleVi": "Trái cây",
   "icon": "🍎",
-  "clue": "Where is the frog? It is under the {word}!",
-  "shortClues": ["Find the {word}!", "Can you find the {word}?"],
+  "clue": "Listen! Can you find the {word}?",
+  "shortClues": ["Find the {word}!", "Where is the {word}?"],
   "words": [
     {"word": "apple", "picture": "🍎", "vi": "quả táo"}
   ],
@@ -43,6 +43,8 @@ lặp lại mỗi lần vào màn mới. Bé chạm vào lá sen đúng để t�
   không riêng gì lượt đầu.
 - `shortClues` (tùy chọn): các câu ngắn, cùng xoay vòng với `clue`. Bỏ trống thì dùng bộ câu mặc định;
   để `[]` thì lượt nào cũng đọc `clue`. Mỗi câu phải có `{word}`.
+- **Không nhắc "frog"/"ếch" trong `clue` hay `shortClues`.** Con ếch là phần thưởng khi chạm đúng, không
+  phải thứ bé nghe để tìm, và trên lá sen không có hình con ếch nào — nhắc đến sẽ gây nhầm cho bé.
 - `picture`: emoji hoặc chữ ngắn (ví dụ `"3"`).
 - `pads`: số lá sen (không vượt quá số từ của màn). `rounds`: số chú ếch cần tìm.
 - `words` (tùy chọn, trong level): chỉ dùng một phần từ vựng của chủ đề.
