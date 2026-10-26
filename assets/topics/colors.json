@@ -20,7 +20,9 @@
     {"word": "purple", "picture": "🟣", "vi": "màu tím"},
     {"word": "brown", "picture": "🟤", "vi": "màu nâu"},
     {"word": "black", "picture": "⚫", "vi": "màu đen"},
-    {"word": "white", "picture": "⚪", "vi": "màu trắng"}
+    {"word": "white", "picture": "⚪", "vi": "màu trắng"},
+    {"word": "pink", "picture": "🩷", "vi": "màu hồng"},
+    {"word": "cyan", "picture": "🩵", "vi": "màu xanh lơ"}
   ],
   "levels": [
     {"pads": 4, "rounds": 4, "showWord": true},

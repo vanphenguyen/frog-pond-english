@@ -23,7 +23,15 @@
     {"word": "rabbit", "picture": "🐰", "vi": "con thỏ"},
     {"word": "lion", "picture": "🦁", "vi": "con sư tử"},
     {"word": "monkey", "picture": "🐵", "vi": "con khỉ"},
-    {"word": "bear", "picture": "🐻", "vi": "con gấu"}
+    {"word": "bear", "picture": "🐻", "vi": "con gấu"},
+    {"word": "elephant", "picture": "🐘", "vi": "con voi"},
+    {"word": "tiger", "picture": "🐯", "vi": "con hổ"},
+    {"word": "zebra", "picture": "🦓", "vi": "con ngựa vằn"},
+    {"word": "sheep", "picture": "🐑", "vi": "con cừu"},
+    {"word": "chicken", "picture": "🐔", "vi": "con gà"},
+    {"word": "owl", "picture": "🦉", "vi": "con cú"},
+    {"word": "penguin", "picture": "🐧", "vi": "chim cánh cụt"},
+    {"word": "turtle", "picture": "🐢", "vi": "con rùa"}
   ],
   "levels": [
     {"pads": 4, "rounds": 4, "showWord": true},

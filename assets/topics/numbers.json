@@ -21,7 +21,12 @@
     {"word": "seven", "picture": "7", "vi": "số bảy"},
     {"word": "eight", "picture": "8", "vi": "số tám"},
     {"word": "nine", "picture": "9", "vi": "số chín"},
-    {"word": "ten", "picture": "10", "vi": "số mười"}
+    {"word": "ten", "picture": "10", "vi": "số mười"},
+    {"word": "eleven", "picture": "11", "vi": "số mười một"},
+    {"word": "twelve", "picture": "12", "vi": "số mười hai"},
+    {"word": "thirteen", "picture": "13", "vi": "số mười ba"},
+    {"word": "fourteen", "picture": "14", "vi": "số mười bốn"},
+    {"word": "fifteen", "picture": "15", "vi": "số mười lăm"}
   ],
   "levels": [
     {"pads": 4, "rounds": 4, "showWord": true},

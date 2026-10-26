@@ -23,7 +23,12 @@
     {"word": "strawberry", "picture": "🍓", "vi": "quả dâu tây"},
     {"word": "watermelon", "picture": "🍉", "vi": "quả dưa hấu"},
     {"word": "pineapple", "picture": "🍍", "vi": "quả dứa"},
-    {"word": "peach", "picture": "🍑", "vi": "quả đào"}
+    {"word": "peach", "picture": "🍑", "vi": "quả đào"},
+    {"word": "kiwi", "picture": "🥝", "vi": "quả kiwi"},
+    {"word": "coconut", "picture": "🥥", "vi": "quả dừa"},
+    {"word": "melon", "picture": "🍈", "vi": "quả dưa lưới"},
+    {"word": "avocado", "picture": "🥑", "vi": "quả bơ"},
+    {"word": "blueberry", "picture": "🫐", "vi": "quả việt quất"}
   ],
   "levels": [
     {"pads": 4, "rounds": 4, "showWord": true},
