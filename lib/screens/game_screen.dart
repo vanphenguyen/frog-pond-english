@@ -211,9 +211,8 @@ class _TopBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // The row shows how many frogs are left in the counter: it starts full
-    // and a wrong tap dims one frog (never below 0), rather than filling up
-    // as rounds are completed.
+    // The row fills up one frog per round solved, same as before, but a
+    // wrong tap now subtracts a frog too (see GameSession.livesRemaining).
     final remaining = session.livesRemaining;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),

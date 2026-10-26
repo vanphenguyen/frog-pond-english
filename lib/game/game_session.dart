@@ -44,10 +44,15 @@ class GameSession {
   bool get isFinished => roundSolved && isLastRound;
   int get stars => starsFor(mistakes, level.rounds);
 
-  /// Frogs left in the top-bar counter: starts at [LevelConfig.rounds] and
-  /// drops by one for every wrong tap, never below 0 (a wrong tap past the
-  /// last frog just keeps the counter at 0, it does not end the level).
-  int get livesRemaining => max(0, level.rounds - mistakes);
+  /// Rounds solved so far this level (the current round counts once it is
+  /// solved, not before).
+  int get roundsCompleted => roundNumber - (roundSolved ? 0 : 1);
+
+  /// Frogs shown in the top-bar counter. It grows by one each round solved,
+  /// same as before, but a wrong tap subtracts one too — cumulatively, for
+  /// the whole level, not just the current round — so repeated mistakes can
+  /// pull it back down below what has already been earned. Never below 0.
+  int get livesRemaining => max(0, roundsCompleted - mistakes);
 
   static int starsFor(int mistakes, int rounds) {
     if (mistakes == 0) return 3;
