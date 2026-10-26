@@ -2,7 +2,9 @@
 
 ## Ý tưởng
 Đầm sen có nhiều lá sen, mỗi lá có một hình (con vật, trái cây, màu, số).
-Giọng đọc nói: *"Where is the frog? It is under the **apple**!"*. Bé chạm vào lá sen đúng để tìm chú ếch.
+Lượt đầu của mỗi màn, giọng đọc nói: *"Where is the frog? It is under the **apple**!"*.
+Các lượt sau đọc ngẫu nhiên một câu ngắn (*"Find the **apple**!"*, *"Can you find the **apple**?"*…),
+không trùng câu ở lượt ngay trước. Bé chạm vào lá sen đúng để tìm chú ếch.
 
 - **Chọn sai:** lá rung, mờ đi, hiện chữ và đọc từ đó ("banana. Try again!"). Bé vẫn học được một từ mới.
 - **Chọn đúng:** ếch nhảy lên, khung gợi ý hiện nghĩa tiếng Việt ("apple = quả táo").
@@ -25,6 +27,7 @@ Giọng đọc nói: *"Where is the frog? It is under the **apple**!"*. Bé ch�
   "titleVi": "Trái cây",
   "icon": "🍎",
   "clue": "Where is the frog? It is under the {word}!",
+  "shortClues": ["Find the {word}!", "Can you find the {word}?"],
   "words": [
     {"word": "apple", "picture": "🍎", "vi": "quả táo"}
   ],
@@ -34,7 +37,9 @@ Giọng đọc nói: *"Where is the frog? It is under the **apple**!"*. Bé ch�
   ]
 }
 ```
-- `clue`: câu đọc mỗi lượt, `{word}` được thay bằng từ cần tìm.
+- `clue`: câu đọc ở lượt đầu mỗi màn, `{word}` được thay bằng từ cần tìm.
+- `shortClues` (tùy chọn): các câu ngắn cho những lượt sau, chọn ngẫu nhiên. Bỏ trống thì dùng bộ câu mặc định;
+  để `[]` thì lượt nào cũng đọc `clue`. Mỗi câu phải có `{word}`.
 - `picture`: emoji hoặc chữ ngắn (ví dụ `"3"`).
 - `pads`: số lá sen (không vượt quá số từ của màn). `rounds`: số chú ếch cần tìm.
 - `words` (tùy chọn, trong level): chỉ dùng một phần từ vựng của chủ đề.

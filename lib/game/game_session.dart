@@ -4,12 +4,14 @@ import '../models/topic.dart';
 
 enum TapOutcome { correct, wrong, ignored }
 
-/// One pond layout: the words on the pads and which pad hides the frog.
+/// One pond layout: the words on the pads, which pad hides the frog and
+/// the sentence that asks for it.
 class Round {
-  const Round(this.pads, this.frogIndex);
+  const Round(this.pads, this.frogIndex, this.clue);
 
   final List<VocabWord> pads;
   final int frogIndex;
+  final String clue;
 
   VocabWord get target => pads[frogIndex];
 }
@@ -26,6 +28,7 @@ class GameSession {
   final LevelConfig level;
   final Random _random;
   final List<VocabWord> _pool;
+  String? _clueTemplate;
 
   late Round round;
 
@@ -72,8 +75,22 @@ class GameSession {
       for (var i = 0; i < pads.length; i++)
         if (!identical(pads[i], previous)) i,
     ];
-    round = Round(pads, choices[_random.nextInt(choices.length)]);
+    final frogIndex = choices[_random.nextInt(choices.length)];
+    round = Round(pads, frogIndex, topic.clueFor(pads[frogIndex], _nextClue()));
     tried.clear();
     roundSolved = false;
+  }
+
+  /// The full sentence opens the level; later rounds rotate the short ones
+  /// without using the same sentence twice in a row.
+  String _nextClue() {
+    final short = topic.shortClues;
+    if (roundNumber == 1 || short.isEmpty) return _clueTemplate = topic.clue;
+    final choices = [
+      for (final c in short)
+        if (c != _clueTemplate) c,
+    ];
+    final pool = choices.isEmpty ? short : choices;
+    return _clueTemplate = pool[_random.nextInt(pool.length)];
   }
 }

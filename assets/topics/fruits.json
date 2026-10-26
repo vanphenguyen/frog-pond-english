@@ -4,6 +4,13 @@
   "titleVi": "Trái cây",
   "icon": "🍎",
   "clue": "Where is the frog? It is under the {word}!",
+  "shortClues": [
+    "Find the {word}!",
+    "Can you find the {word}?",
+    "Where is the {word}?",
+    "Now, the {word}!",
+    "Look for the {word}!"
+  ],
   "words": [
     {"word": "apple", "picture": "🍎", "vi": "quả táo"},
     {"word": "banana", "picture": "🍌", "vi": "quả chuối"},

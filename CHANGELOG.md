@@ -6,3 +6,4 @@
 - Tính sao, mở khóa màn, lưu tiến độ trên máy.
 - Bản chơi trên web (GitHub Pages) để chơi bằng Safari trên iPhone.
 - Bản web: luôn chọn giọng tiếng Anh (trước đây Safari có thể đọc bằng giọng tiếng Việt của máy).
+- Câu gợi ý không còn lặp lại: lượt đầu đọc đủ câu, các lượt sau luân phiên câu ngắn (`shortClues` trong JSON).
