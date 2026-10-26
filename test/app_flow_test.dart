@@ -44,11 +44,14 @@ void main() {
 
     await tester.tap(find.text('1'));
     await tester.pumpAndSettle();
-    expect(speech.spoken.last, startsWith('The frog is under the'));
+    // Which exact sentence (the long one or a short one) is random, so
+    // just check it names the target word.
+    final clue = speech.spoken.last;
+    expect(clue.contains('apple') || clue.contains('pear'), isTrue);
 
     final state = tester.state(find.byType(GameScreen));
     // The target word is written on the banner in level 1.
-    final target = speech.spoken.last.contains('apple') ? 'apple' : 'pear';
+    final target = clue.contains('apple') ? 'apple' : 'pear';
     expect(find.text(target), findsOneWidget);
     final other = target == 'apple' ? '🍐' : '🍎';
 

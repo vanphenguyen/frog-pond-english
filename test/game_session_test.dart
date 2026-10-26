@@ -64,32 +64,51 @@ void main() {
     expect(GameSession.starsFor(1, 1), 2);
   });
 
-  test('first round reads the full clue, later rounds vary short ones', () {
-    final topic = Topic(
-      id: 'test',
-      title: 'Test',
-      titleVi: 'Thử',
-      icon: '🧪',
-      clue: 'Where is {word}?',
-      shortClues: const ['A {word}', 'B {word}', 'C {word}'],
-      words: [for (var i = 0; i < 5; i++) VocabWord(word: 'w$i', picture: '$i')],
-      levels: const [LevelConfig(pads: 3, rounds: 30)],
-    );
+  Topic clueTopic() => Topic(
+        id: 'test',
+        title: 'Test',
+        titleVi: 'Thử',
+        icon: '🧪',
+        clue: 'Where is {word}?',
+        shortClues: const ['A {word}', 'B {word}', 'C {word}'],
+        words: [for (var i = 0; i < 5; i++) VocabWord(word: 'w$i', picture: '$i')],
+        levels: const [LevelConfig(pads: 3, rounds: 30)],
+      );
+
+  test('clue sentence varies round to round, never repeating immediately', () {
+    final topic = clueTopic();
     final session =
         GameSession(topic: topic, level: topic.levels.first, random: Random(4));
-    expect(session.round.clue, 'Where is ${session.round.target.word}?');
-    final templates = <String>[];
+    final templates = <String>[session.round.clue[0]];
     while (!session.isLastRound) {
       session.tap(session.round.frogIndex);
       session.nextRound();
       final clue = session.round.clue;
-      expect(clue, endsWith(' ${session.round.target.word}'));
+      expect(clue, contains(session.round.target.word));
       templates.add(clue[0]);
     }
     for (var i = 1; i < templates.length; i++) {
       expect(templates[i], isNot(templates[i - 1]));
     }
-    expect(templates.toSet(), {'A', 'B', 'C'});
+    // "Where is ...?" (W) and the 3 short ones (A, B, C) all get a turn.
+    expect(templates.toSet(), {'W', 'A', 'B', 'C'});
+  });
+
+  test('a new level does not always open with the long sentence', () {
+    // Starting level after level used to always speak the long "Where is
+    // the frog?" sentence first — children found that repetitive. Across
+    // many fresh levels (= fresh sessions) at least one should now open
+    // with a short clue instead.
+    final topic = clueTopic();
+    final firstClues = [
+      for (var seed = 0; seed < 30; seed++)
+        GameSession(
+          topic: topic,
+          level: topic.levels.first,
+          random: Random(seed),
+        ).round.clue[0],
+    ];
+    expect(firstClues, contains(isNot('W')));
   });
 
   test('clue without the word placeholder is reported', () {

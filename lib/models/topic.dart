@@ -94,11 +94,14 @@ class Topic {
   final String titleVi;
   final String icon;
 
-  /// Sentence spoken in the first round of a level; `{word}` is replaced.
+  /// The full sentence; `{word}` is replaced. Not pinned to the first round
+  /// of a level — it is just one of the sentences [GameSession] rotates
+  /// through round to round, same as [shortClues].
   final String clue;
 
-  /// Shorter sentences, one picked at random for each later round so the
-  /// same words are not repeated every time.
+  /// Shorter sentences that, together with [clue], are picked at random
+  /// each round (never repeating the previous round's sentence) so the
+  /// child does not keep hearing the same wording.
   final List<String> shortClues;
   final List<VocabWord> words;
   final List<LevelConfig> levels;
