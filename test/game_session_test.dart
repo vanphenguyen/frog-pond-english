@@ -64,6 +64,47 @@ void main() {
     expect(GameSession.starsFor(1, 1), 2);
   });
 
+  test('first round reads the full clue, later rounds vary short ones', () {
+    final topic = Topic(
+      id: 'test',
+      title: 'Test',
+      titleVi: 'Thử',
+      icon: '🧪',
+      clue: 'Where is {word}?',
+      shortClues: const ['A {word}', 'B {word}', 'C {word}'],
+      words: [for (var i = 0; i < 5; i++) VocabWord(word: 'w$i', picture: '$i')],
+      levels: const [LevelConfig(pads: 3, rounds: 30)],
+    );
+    final session =
+        GameSession(topic: topic, level: topic.levels.first, random: Random(4));
+    expect(session.round.clue, 'Where is ${session.round.target.word}?');
+    final templates = <String>[];
+    while (!session.isLastRound) {
+      session.tap(session.round.frogIndex);
+      session.nextRound();
+      final clue = session.round.clue;
+      expect(clue, endsWith(' ${session.round.target.word}'));
+      templates.add(clue[0]);
+    }
+    for (var i = 1; i < templates.length; i++) {
+      expect(templates[i], isNot(templates[i - 1]));
+    }
+    expect(templates.toSet(), {'A', 'B', 'C'});
+  });
+
+  test('clue without the word placeholder is reported', () {
+    final topic = Topic(
+      id: 'bad',
+      title: 'Bad',
+      titleVi: '',
+      icon: '❌',
+      clue: 'Where is the frog?',
+      words: [for (var i = 0; i < 3; i++) VocabWord(word: 'w$i', picture: '$i')],
+      levels: const [LevelConfig(pads: 2, rounds: 1)],
+    );
+    expect(topic.validate(), [contains('has no {word}')]);
+  });
+
   test('clue replaces the word placeholder', () {
     final topic = _topic();
     expect(topic.clueFor(topic.words.first), 'Find w0');

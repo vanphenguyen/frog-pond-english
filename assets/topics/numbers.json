@@ -4,6 +4,13 @@
   "titleVi": "Con số",
   "icon": "🔢",
   "clue": "Where is the frog? It is on number {word}!",
+  "shortClues": [
+    "Find number {word}!",
+    "Can you find number {word}?",
+    "Where is number {word}?",
+    "Now, number {word}!",
+    "Look for number {word}!"
+  ],
   "words": [
     {"word": "one", "picture": "1", "vi": "số một"},
     {"word": "two", "picture": "2", "vi": "số hai"},

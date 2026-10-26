@@ -67,7 +67,7 @@ class _GameScreenState extends State<GameScreen> {
 
   void _speakClue() {
     if (!mounted) return;
-    _speech.speak(widget.topic.clueFor(_session.round.target));
+    _speech.speak(_session.round.clue);
   }
 
   Future<void> _onTap(int index) async {

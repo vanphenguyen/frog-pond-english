@@ -57,6 +57,7 @@ class Topic {
     required this.titleVi,
     required this.icon,
     required this.clue,
+    this.shortClues = defaultShortClues,
     required this.words,
     required this.levels,
   });
@@ -67,6 +68,8 @@ class Topic {
         titleVi: json['titleVi'] as String? ?? '',
         icon: json['icon'] as String,
         clue: json['clue'] as String? ?? defaultClue,
+        shortClues: (json['shortClues'] as List<dynamic>?)?.cast<String>() ??
+            defaultShortClues,
         words: [
           for (final w in json['words'] as List<dynamic>)
             VocabWord.fromJson(w as Map<String, dynamic>),
@@ -78,18 +81,30 @@ class Topic {
       );
 
   static const defaultClue = 'Where is the frog? It is under the {word}!';
+  static const defaultShortClues = [
+    'Find the {word}!',
+    'Can you find the {word}?',
+    'Where is the {word}?',
+    'Now, the {word}!',
+    'Look for the {word}!',
+  ];
 
   final String id;
   final String title;
   final String titleVi;
   final String icon;
 
-  /// Sentence spoken at the start of each round; `{word}` is replaced.
+  /// Sentence spoken in the first round of a level; `{word}` is replaced.
   final String clue;
+
+  /// Shorter sentences, one picked at random for each later round so the
+  /// same words are not repeated every time.
+  final List<String> shortClues;
   final List<VocabWord> words;
   final List<LevelConfig> levels;
 
-  String clueFor(VocabWord target) => clue.replaceAll('{word}', target.word);
+  String clueFor(VocabWord target, [String? template]) =>
+      (template ?? clue).replaceAll('{word}', target.word);
 
   List<VocabWord> wordsForLevel(LevelConfig level) {
     final subset = level.words;
@@ -103,6 +118,9 @@ class Topic {
     final seen = <String>{};
     for (final w in words) {
       if (!seen.add(w.word)) errors.add('$id: duplicate word "${w.word}"');
+    }
+    for (final c in [clue, ...shortClues]) {
+      if (!c.contains('{word}')) errors.add('$id: clue "$c" has no {word}');
     }
     if (levels.isEmpty) errors.add('$id: has no levels');
     for (var i = 0; i < levels.length; i++) {

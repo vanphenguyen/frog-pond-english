@@ -4,6 +4,13 @@
   "titleVi": "Màu sắc",
   "icon": "🎨",
   "clue": "Where is the frog? It is on the {word} lily pad!",
+  "shortClues": [
+    "Find the {word} lily pad!",
+    "Can you find {word}?",
+    "Where is {word}?",
+    "Now, {word}!",
+    "Look for the {word} one!"
+  ],
   "words": [
     {"word": "red", "picture": "🔴", "vi": "màu đỏ"},
     {"word": "orange", "picture": "🟠", "vi": "màu cam"},
