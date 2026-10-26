@@ -54,6 +54,11 @@ class GameSession {
   /// pull it back down below what has already been earned. Never below 0.
   int get livesRemaining => max(0, roundsCompleted - mistakes);
 
+  /// Whether the level counts as cleared: enough frogs left in the counter
+  /// at the end to meet [LevelConfig.requiredFrogs]. Only meaningful once
+  /// [isFinished] is true — call it then, not mid-level.
+  bool get passed => livesRemaining >= level.requiredFrogs;
+
   static int starsFor(int mistakes, int rounds) {
     if (mistakes == 0) return 3;
     if (mistakes <= max(1, rounds ~/ 2)) return 2;

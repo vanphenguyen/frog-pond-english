@@ -95,6 +95,67 @@ void main() {
     expect(session.isFinished, isTrue);
   });
 
+  test('requiredFrogs defaults to about half the rounds, min 1', () {
+    expect(const LevelConfig(pads: 2, rounds: 1).requiredFrogs, 1);
+    expect(const LevelConfig(pads: 2, rounds: 4).requiredFrogs, 2);
+    expect(const LevelConfig(pads: 2, rounds: 5).requiredFrogs, 3);
+    // An explicit minFrogs in JSON always wins over the default.
+    expect(const LevelConfig(pads: 2, rounds: 5, minFrogs: 1).requiredFrogs, 1);
+  });
+
+  test('passed only once enough frogs are left at the end', () {
+    final topic = _topic(pads: 3, rounds: 4); // requiredFrogs defaults to 2
+    final session =
+        GameSession(topic: topic, level: topic.levels.first, random: Random(6));
+
+    // 2 mistakes total across 4 rounds: livesRemaining ends at 4-2=2, which
+    // just meets the default requiredFrogs of 2.
+    var mistakesLeft = 2;
+    while (!session.isFinished) {
+      if (mistakesLeft > 0) {
+        session.tap((session.round.frogIndex + 1) % 3);
+        mistakesLeft--;
+      }
+      session.tap(session.round.frogIndex);
+      if (!session.isFinished) session.nextRound();
+    }
+    expect(session.livesRemaining, 2);
+    expect(session.passed, isTrue);
+  });
+
+  test('not passed when mistakes outweigh rounds solved', () {
+    final topic = _topic(pads: 3, rounds: 4); // requiredFrogs defaults to 2
+    final session =
+        GameSession(topic: topic, level: topic.levels.first, random: Random(7));
+
+    // 3 mistakes total: livesRemaining ends at 4-3=1, short of requiredFrogs
+    // of 2 — the level still plays out to the end, it just does not pass.
+    var mistakesLeft = 3;
+    while (!session.isFinished) {
+      if (mistakesLeft > 0) {
+        session.tap((session.round.frogIndex + 1) % 3);
+        mistakesLeft--;
+      }
+      session.tap(session.round.frogIndex);
+      if (!session.isFinished) session.nextRound();
+    }
+    expect(session.livesRemaining, 1);
+    expect(session.passed, isFalse);
+  });
+
+  test('minFrogs out of range is reported', () {
+    final topic = Topic(
+      id: 'bad',
+      title: 'Bad',
+      titleVi: '',
+      icon: '❌',
+      clue: 'Find {word}',
+      words: [for (var i = 0; i < 3; i++) VocabWord(word: 'w$i', picture: '$i')],
+      levels: const [LevelConfig(pads: 2, rounds: 3, minFrogs: 4)],
+    );
+    expect(topic.validate(), [contains('minFrogs 4 must be between 1 and 3')]);
+  });
+
   Topic clueTopic() => Topic(
         id: 'test',
         title: 'Test',

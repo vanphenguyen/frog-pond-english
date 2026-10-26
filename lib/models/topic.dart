@@ -3,6 +3,8 @@
 /// Adding words or levels only needs a JSON change; see docs/GAME_DESIGN.md.
 library;
 
+import 'dart:math';
+
 class VocabWord {
   const VocabWord({required this.word, required this.picture, this.vi});
 
@@ -28,6 +30,7 @@ class LevelConfig {
     required this.rounds,
     this.showWord = true,
     this.words,
+    this.minFrogs,
   });
 
   factory LevelConfig.fromJson(Map<String, dynamic> json) => LevelConfig(
@@ -35,6 +38,7 @@ class LevelConfig {
         rounds: json['rounds'] as int,
         showWord: json['showWord'] as bool? ?? true,
         words: (json['words'] as List<dynamic>?)?.cast<String>(),
+        minFrogs: json['minFrogs'] as int?,
       );
 
   /// Number of lily pads on the pond.
@@ -48,6 +52,16 @@ class LevelConfig {
 
   /// Optional subset of the topic's words; null means all of them.
   final List<String>? words;
+
+  /// How many frogs (see GameSession.livesRemaining) are needed at the end
+  /// of the level to pass it and unlock the next one. Null means use the
+  /// default: about half the rounds, same cutoff as the 2-star threshold.
+  /// Set in JSON per level to make a specific level stricter or looser.
+  final int? minFrogs;
+
+  /// The threshold actually used: [minFrogs] if set, else the default.
+  int get requiredFrogs =>
+      minFrogs ?? max(1, min(rounds, (rounds / 2).ceil()));
 }
 
 class Topic {
@@ -143,6 +157,11 @@ class Topic {
       final available = wordsForLevel(level).length;
       if (level.pads > available) {
         errors.add('$name: ${level.pads} pads but only $available words');
+      }
+      final minFrogs = level.minFrogs;
+      if (minFrogs != null && (minFrogs < 1 || minFrogs > level.rounds)) {
+        errors.add('$name: minFrogs $minFrogs must be between 1 and '
+            '${level.rounds} (its rounds)');
       }
     }
     return errors;

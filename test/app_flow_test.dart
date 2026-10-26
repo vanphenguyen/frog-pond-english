@@ -21,7 +21,11 @@ const _topic = Topic(
     VocabWord(word: 'pear', picture: '🍐', vi: 'quả lê'),
   ],
   levels: [
-    LevelConfig(pads: 2, rounds: 1),
+    // 2 rounds (not 1): with only 2 words, round 2's target is always the
+    // other word (the anti-repeat rule leaves no other choice), which keeps
+    // the widget test below deterministic while still allowing one mistake
+    // and still passing (minFrogs defaults to 1 for a 2-round level).
+    LevelConfig(pads: 2, rounds: 2),
     LevelConfig(pads: 2, rounds: 1, showWord: false),
   ],
 );
@@ -66,6 +70,17 @@ void main() {
     await tester.tap(find.descendant(
       of: find.byType(LilyPadTile),
       matching: find.text(target == 'apple' ? '🍎' : '🍐'),
+    ));
+    await tester.pump(const Duration(seconds: 2));
+    await tester.pumpAndSettle();
+    expect(state.mounted, isTrue);
+
+    // Round 2: with only 2 words and the anti-repeat rule, the target can
+    // only be the other word this time. No mistakes here, so the level
+    // still passes overall (1 mistake out of 2 rounds).
+    await tester.tap(find.descendant(
+      of: find.byType(LilyPadTile),
+      matching: find.text(other),
     ));
     await tester.pump(const Duration(seconds: 2));
     await tester.pumpAndSettle();
