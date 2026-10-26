@@ -3,7 +3,7 @@
   "title": "Numbers",
   "titleVi": "Con số",
   "icon": "🔢",
-  "clue": "Where is the frog? It is on number {word}!",
+  "clue": "Listen! Can you find number {word}?",
   "shortClues": [
     "Find number {word}!",
     "Can you find number {word}?",

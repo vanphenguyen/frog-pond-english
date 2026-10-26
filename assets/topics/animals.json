@@ -3,7 +3,7 @@
   "title": "Animals",
   "titleVi": "Con vật",
   "icon": "🐶",
-  "clue": "Where is the frog? It is under the {word}!",
+  "clue": "Listen! Can you find the {word}?",
   "shortClues": [
     "Find the {word}!",
     "Can you find the {word}?",

@@ -117,11 +117,27 @@ void main() {
       title: 'Bad',
       titleVi: '',
       icon: '❌',
-      clue: 'Where is the frog?',
+      clue: 'Where is it?',
       words: [for (var i = 0; i < 3; i++) VocabWord(word: 'w$i', picture: '$i')],
       levels: const [LevelConfig(pads: 2, rounds: 1)],
     );
     expect(topic.validate(), [contains('has no {word}')]);
+  });
+
+  test('clue mentioning the frog is reported', () {
+    // The frog only pops up as a reward for a correct tap; it is never one
+    // of the pictures on a lily pad, so a clue naming it instead of the
+    // word being taught misleads the child (see CHANGELOG, user feedback).
+    final topic = Topic(
+      id: 'bad',
+      title: 'Bad',
+      titleVi: '',
+      icon: '❌',
+      clue: 'Where is the frog? It is under the {word}!',
+      words: [for (var i = 0; i < 3; i++) VocabWord(word: 'w$i', picture: '$i')],
+      levels: const [LevelConfig(pads: 2, rounds: 1)],
+    );
+    expect(topic.validate(), [contains('mentions the frog')]);
   });
 
   test('clue replaces the word placeholder', () {

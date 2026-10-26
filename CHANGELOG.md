@@ -8,3 +8,4 @@
 - Bản web: luôn chọn giọng tiếng Anh (trước đây Safari có thể đọc bằng giọng tiếng Việt của máy).
 - Câu gợi ý không còn lặp lại: lượt đầu đọc đủ câu, các lượt sau luân phiên câu ngắn (`shortClues` trong JSON).
 - Câu đầy đủ "Where is the frog? ..." không còn tự động đọc ở lượt đầu mỗi màn: chơi nhiều màn liên tiếp sẽ không nghe lại câu đó mỗi lần vào màn mới.
+- Bỏ "frog" khỏi lời đọc và chữ hiển thị mỗi lượt (ví dụ "Listen! Can you find the apple?" thay vì "Where is the frog? It is under the apple!"): con ếch chỉ là phần thưởng khi chạm đúng, không phải thứ bé cần nghe để tìm, và nhắc đến dễ gây nhầm vì không có hình con ếch trên lá sen nào.

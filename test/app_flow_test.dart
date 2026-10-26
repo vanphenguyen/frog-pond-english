@@ -15,7 +15,7 @@ const _topic = Topic(
   title: 'Fruits',
   titleVi: 'Trái cây',
   icon: '🍎',
-  clue: 'The frog is under the {word}!',
+  clue: 'Can you find the {word}?',
   words: [
     VocabWord(word: 'apple', picture: '🍎', vi: 'quả táo'),
     VocabWord(word: 'pear', picture: '🍐', vi: 'quả lê'),

@@ -80,7 +80,7 @@ class Topic {
         ],
       );
 
-  static const defaultClue = 'Where is the frog? It is under the {word}!';
+  static const defaultClue = 'Listen! Can you find the {word}?';
   static const defaultShortClues = [
     'Find the {word}!',
     'Can you find the {word}?',
@@ -124,6 +124,12 @@ class Topic {
     }
     for (final c in [clue, ...shortClues]) {
       if (!c.contains('{word}')) errors.add('$id: clue "$c" has no {word}');
+      // The frog is a reward that pops up on a correct tap, not something
+      // shown on a lily pad — mentioning it in the clue misleads the child
+      // into listening for "frog" instead of the word being taught.
+      if (c.toLowerCase().contains('frog')) {
+        errors.add('$id: clue "$c" mentions the frog, which is confusing');
+      }
     }
     if (levels.isEmpty) errors.add('$id: has no levels');
     for (var i = 0; i < levels.length; i++) {
