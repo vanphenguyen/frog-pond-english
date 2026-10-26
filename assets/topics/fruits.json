@@ -1,0 +1,27 @@
+{
+  "id": "fruits",
+  "title": "Fruits",
+  "titleVi": "Trái cây",
+  "icon": "🍎",
+  "clue": "Where is the frog? It is under the {word}!",
+  "words": [
+    {"word": "apple", "picture": "🍎", "vi": "quả táo"},
+    {"word": "banana", "picture": "🍌", "vi": "quả chuối"},
+    {"word": "orange", "picture": "🍊", "vi": "quả cam"},
+    {"word": "grapes", "picture": "🍇", "vi": "quả nho"},
+    {"word": "mango", "picture": "🥭", "vi": "quả xoài"},
+    {"word": "lemon", "picture": "🍋", "vi": "quả chanh"},
+    {"word": "cherry", "picture": "🍒", "vi": "quả anh đào"},
+    {"word": "pear", "picture": "🍐", "vi": "quả lê"},
+    {"word": "strawberry", "picture": "🍓", "vi": "quả dâu tây"},
+    {"word": "watermelon", "picture": "🍉", "vi": "quả dưa hấu"},
+    {"word": "pineapple", "picture": "🍍", "vi": "quả dứa"},
+    {"word": "peach", "picture": "🍑", "vi": "quả đào"}
+  ],
+  "levels": [
+    {"pads": 4, "rounds": 4, "showWord": true},
+    {"pads": 6, "rounds": 5, "showWord": true},
+    {"pads": 6, "rounds": 5, "showWord": false},
+    {"pads": 9, "rounds": 6, "showWord": false}
+  ]
+}

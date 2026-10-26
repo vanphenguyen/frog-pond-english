@@ -1,0 +1,25 @@
+{
+  "id": "numbers",
+  "title": "Numbers",
+  "titleVi": "Con số",
+  "icon": "🔢",
+  "clue": "Where is the frog? It is on number {word}!",
+  "words": [
+    {"word": "one", "picture": "1", "vi": "số một"},
+    {"word": "two", "picture": "2", "vi": "số hai"},
+    {"word": "three", "picture": "3", "vi": "số ba"},
+    {"word": "four", "picture": "4", "vi": "số bốn"},
+    {"word": "five", "picture": "5", "vi": "số năm"},
+    {"word": "six", "picture": "6", "vi": "số sáu"},
+    {"word": "seven", "picture": "7", "vi": "số bảy"},
+    {"word": "eight", "picture": "8", "vi": "số tám"},
+    {"word": "nine", "picture": "9", "vi": "số chín"},
+    {"word": "ten", "picture": "10", "vi": "số mười"}
+  ],
+  "levels": [
+    {"pads": 4, "rounds": 4, "showWord": true},
+    {"pads": 6, "rounds": 5, "showWord": true},
+    {"pads": 6, "rounds": 5, "showWord": false},
+    {"pads": 9, "rounds": 6, "showWord": false}
+  ]
+}

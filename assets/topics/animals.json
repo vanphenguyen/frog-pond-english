@@ -1,0 +1,27 @@
+{
+  "id": "animals",
+  "title": "Animals",
+  "titleVi": "Con vật",
+  "icon": "🐶",
+  "clue": "Where is the frog? It is under the {word}!",
+  "words": [
+    {"word": "cat", "picture": "🐱", "vi": "con mèo"},
+    {"word": "dog", "picture": "🐶", "vi": "con chó"},
+    {"word": "duck", "picture": "🦆", "vi": "con vịt"},
+    {"word": "fish", "picture": "🐟", "vi": "con cá"},
+    {"word": "bird", "picture": "🐦", "vi": "con chim"},
+    {"word": "cow", "picture": "🐮", "vi": "con bò"},
+    {"word": "pig", "picture": "🐷", "vi": "con lợn"},
+    {"word": "horse", "picture": "🐴", "vi": "con ngựa"},
+    {"word": "rabbit", "picture": "🐰", "vi": "con thỏ"},
+    {"word": "lion", "picture": "🦁", "vi": "con sư tử"},
+    {"word": "monkey", "picture": "🐵", "vi": "con khỉ"},
+    {"word": "bear", "picture": "🐻", "vi": "con gấu"}
+  ],
+  "levels": [
+    {"pads": 4, "rounds": 4, "showWord": true},
+    {"pads": 6, "rounds": 5, "showWord": true},
+    {"pads": 6, "rounds": 5, "showWord": false},
+    {"pads": 9, "rounds": 6, "showWord": false}
+  ]
+}
