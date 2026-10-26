@@ -9,9 +9,12 @@ màu, số), không nhắc đến "ếch" — con ếch chỉ là phần thưở
 lá sen, không phải thứ bé phải nghe để tìm (dễ gây nhầm vì không có hình con ếch nào trên các lá sen).
 
 - **Chọn sai:** lá rung, mờ đi, hiện chữ và đọc từ đó ("banana. Try again!"). Bé vẫn học được một từ mới.
+  Hàng ếch ở đầu màn chơi (bằng số lượt của màn) mất đi 1 chú ếch — không bao giờ xuống dưới 0
+  dù sai bao nhiêu lần nữa. Chọn sai lại đúng lá vừa chọn sai không bị trừ thêm.
 - **Chọn đúng:** ếch nhảy lên, khung gợi ý hiện nghĩa tiếng Việt ("apple = quả táo").
 - **Hết màn:** nhận 1–3 sao. 3 sao khi không sai lần nào; 2 sao khi số lần sai không quá nửa số lượt; còn lại 1 sao.
 - Màn sau mở khóa khi màn trước có ít nhất 1 sao. Sao được lưu trên máy, chơi lại không bị giảm sao.
+- Hết ếch trong hàng ở trên (0/số lượt) không làm dừng màn chơi hay trừ sao thêm — màn vẫn chơi hết các lượt như bình thường, số sao cuối màn vẫn tính theo tổng số lần sai như cũ.
 
 ## Độ khó
 | Màn | Số lá sen | Hiện chữ? | Kỹ năng |

@@ -64,6 +64,31 @@ void main() {
     expect(GameSession.starsFor(1, 1), 2);
   });
 
+  test('a wrong tap loses one frog from the counter, floored at 0', () {
+    final topic = _topic(pads: 3, rounds: 2);
+    final session =
+        GameSession(topic: topic, level: topic.levels.first, random: Random(5));
+    expect(session.livesRemaining, 2); // starts full (= rounds)
+
+    final wrong = (session.round.frogIndex + 1) % 3;
+    session.tap(wrong);
+    expect(session.livesRemaining, 1);
+
+    // Re-tapping the same wrong pad is ignored, so it does not cost another
+    // frog — only a new mistake does.
+    session.tap(wrong);
+    expect(session.livesRemaining, 1);
+
+    final otherWrong = (session.round.frogIndex + 2) % 3;
+    session.tap(otherWrong);
+    expect(session.livesRemaining, 0); // never negative past this point
+
+    session.tap(session.round.frogIndex); // solve, then more mistakes follow
+    session.nextRound();
+    session.tap((session.round.frogIndex + 1) % 3);
+    expect(session.livesRemaining, 0);
+  });
+
   Topic clueTopic() => Topic(
         id: 'test',
         title: 'Test',

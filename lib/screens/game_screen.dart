@@ -211,7 +211,10 @@ class _TopBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final done = session.roundNumber - (session.roundSolved ? 0 : 1);
+    // The row shows how many frogs are left in the counter: it starts full
+    // and a wrong tap dims one frog (never below 0), rather than filling up
+    // as rounds are completed.
+    final remaining = session.livesRemaining;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
@@ -230,7 +233,7 @@ class _TopBar extends StatelessWidget {
               children: [
                 for (var r = 0; r < session.level.rounds; r++)
                   Opacity(
-                    opacity: r < done ? 1 : 0.35,
+                    opacity: r < remaining ? 1 : 0.35,
                     child: const Text('🐸', style: TextStyle(fontSize: 22)),
                   ),
               ],
