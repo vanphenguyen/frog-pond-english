@@ -5,3 +5,4 @@
 - Giọng đọc tiếng Anh, hiện nghĩa tiếng Việt khi tìm thấy ếch.
 - Tính sao, mở khóa màn, lưu tiến độ trên máy.
 - Bản chơi trên web (GitHub Pages) để chơi bằng Safari trên iPhone.
+- Bản web: luôn chọn giọng tiếng Anh (trước đây Safari có thể đọc bằng giọng tiếng Việt của máy).
