@@ -64,29 +64,35 @@ void main() {
     expect(GameSession.starsFor(1, 1), 2);
   });
 
-  test('a wrong tap loses one frog from the counter, floored at 0', () {
-    final topic = _topic(pads: 3, rounds: 2);
+  test('frog counter grows with solved rounds, mistakes pull it back down', () {
+    final topic = _topic(pads: 3, rounds: 3);
     final session =
         GameSession(topic: topic, level: topic.levels.first, random: Random(5));
-    expect(session.livesRemaining, 2); // starts full (= rounds)
+    expect(session.livesRemaining, 0); // starts empty, not full
 
-    final wrong = (session.round.frogIndex + 1) % 3;
-    session.tap(wrong);
-    expect(session.livesRemaining, 1);
-
-    // Re-tapping the same wrong pad is ignored, so it does not cost another
-    // frog — only a new mistake does.
-    session.tap(wrong);
-    expect(session.livesRemaining, 1);
-
-    final otherWrong = (session.round.frogIndex + 2) % 3;
-    session.tap(otherWrong);
-    expect(session.livesRemaining, 0); // never negative past this point
-
-    session.tap(session.round.frogIndex); // solve, then more mistakes follow
-    session.nextRound();
+    // Round 1: one mistake, then solved. Earning the 1st frog cancels out
+    // the 1 accumulated mistake, so the counter is still 0, not 1.
     session.tap((session.round.frogIndex + 1) % 3);
     expect(session.livesRemaining, 0);
+    // Re-tapping the same wrong pad is ignored: not a new mistake.
+    session.tap((session.round.frogIndex + 1) % 3);
+    expect(session.livesRemaining, 0);
+    session.tap(session.round.frogIndex);
+    expect(session.livesRemaining, 0);
+    session.nextRound();
+
+    // Round 2: solved with no mistakes — the counter can finally grow.
+    session.tap(session.round.frogIndex);
+    expect(session.livesRemaining, 1);
+    session.nextRound();
+
+    // Round 3: a mistake here eats into the frog already earned, dipping
+    // the counter back below what was shown a moment ago.
+    session.tap((session.round.frogIndex + 1) % 3);
+    expect(session.livesRemaining, 0);
+    session.tap(session.round.frogIndex);
+    expect(session.livesRemaining, 1); // 3 rounds done, 2 mistakes total
+    expect(session.isFinished, isTrue);
   });
 
   Topic clueTopic() => Topic(
